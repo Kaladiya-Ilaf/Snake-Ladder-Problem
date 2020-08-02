@@ -16,7 +16,7 @@ echo "Position of player1 : " $player1
 function snakeBite(){
 	currentPosition=$1
 	moveToPosition=$2
-   if [ $(( $currentPosition - $moveToPosition )) -lt 0 ]
+   if [ $(( $currentPosition - $moveToPosition )) -lt $START_POSITION ]
 	then
 		echo $START_POSITION
 	else
@@ -28,10 +28,15 @@ function snakeBite(){
 function climbLadder(){
 	currentPosition=$1
    moveToPosition=$2
-   echo $(( $currentPosition + $moveToPosition ))
+   if [ $(( $currentPosition + $moveToPosition )) -gt $WIN_POSITION ]
+	then
+		echo $currentPosition
+	else
+		echo $(( $currentPosition + $moveToPosition ))
+	fi
 }
 
-while [[ $player1 -le $WIN_POSITION ]]
+while [[ $player1 -lt $WIN_POSITION ]]
 do
 #Randomly getting the value  of dice after rolling to play
 diceValue=$(( RANDOM % 6 + 1 ))
