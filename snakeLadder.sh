@@ -11,7 +11,6 @@ WIN_POSITION=100
 player1=$START_POSITION
 echo "Position of player1 : " $player1
 
-
 #function to be executed when snake bite option occurs
 function snakeBite(){
 	currentPosition=$1
@@ -36,25 +35,27 @@ function climbLadder(){
 	fi
 }
 
+#condition to play until player reach winning position
 while [[ $player1 -lt $WIN_POSITION ]]
 do
-#Randomly getting the value  of dice after rolling to play
-diceValue=$(( RANDOM % 6 + 1 ))
-echo "Result of dice rolled : " $diceValue
+	#Randomly getting the value  of dice after rolling to play
+	diceValue=$(( RANDOM % 6 + 1 ))
+	echo "Result of dice rolled : " $diceValue
 
-#Randomly generating  option to decide further action to play
-playOption=$(( RANDOM % 3 ))
+	#Randomly generating  option to decide further action to play
+	playOption=$(( RANDOM % 3 ))
 
-case $playOption in
-	0) echo "Option : No Play."
-		echo "Position of player 1 : " $player1;;
+	case $playOption in
+		0) echo "Option : No Play."
+			echo "Position of player 1 : " $player1;;
 
-	1) echo "Option : Sanke Bite"
-		player1=$(snakeBite $player1 $diceValue)
-		echo "Position of player 1 : " $player1;;
+		1) echo "Option : Sanke Bite"
+			player1=$(snakeBite $player1 $diceValue)
+			echo "Position of player 1 : " $player1;;
 
-	2) echo "Option : Climb Ladder"
-		player1=$(climbLadder $player1 $diceValue)
-		echo "Position of player 1 : " $player1;;
-esac
+		2) echo "Option : Climb Ladder"
+			player1=$(climbLadder $player1 $diceValue)
+			echo "Position of player 1 : " $player1;;
+	esac
+	
 done
