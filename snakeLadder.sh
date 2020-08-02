@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 
 #declaring an array to maintain players
 declare -a player
@@ -11,3 +11,6 @@ WIN_POSITION=100
 player1=$START_POSITION
 echo "Position of player1 : " $player1
 
+#Randomly getting the value  of dice after rolling to play
+diceValue=$(((RANDOM % 6) + 1 ))
+echo "Result of dice rolled : " $diceValue
