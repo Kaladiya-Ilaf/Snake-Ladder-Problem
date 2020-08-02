@@ -31,6 +31,8 @@ function climbLadder(){
    echo $(( $currentPosition + $moveToPosition ))
 }
 
+while [[ $player1 -le $WIN_POSITION ]]
+do
 #Randomly getting the value  of dice after rolling to play
 diceValue=$(( RANDOM % 6 + 1 ))
 echo "Result of dice rolled : " $diceValue
@@ -50,3 +52,4 @@ case $playOption in
 		player1=$(climbLadder $player1 $diceValue)
 		echo "Position of player 1 : " $player1;;
 esac
+done
