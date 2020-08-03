@@ -37,14 +37,14 @@ function climbLadder(){
 
 function playGame(){
    player=$1
-#Randomly getting the value  of dice after rolling to play
-diceValue=$(( RANDOM % 6 + 1 ))
-echo >&2 "Result of dice rolled : " $diceValue
+	#Randomly getting the value  of dice after rolling to play
+	diceValue=$(( RANDOM % 6 + 1 ))
+	echo >&2 "Result of dice rolled : " $diceValue
 
-#Randomly generating  option to decide further action to play
-playOption=$(( RANDOM % 3 ))
+	#Randomly generating  option to decide further action to play
+	playOption=$(( RANDOM % 3 ))
 
-case $playOption in
+	case $playOption in
       0) echo >&2 "Option : No Play.";;
 
       1) echo >&2 "Option : Sanke Bite"
@@ -54,7 +54,7 @@ case $playOption in
          player=$(climbLadder $player $diceValue)
          player=$(playGame $player);;
    esac
- echo $player
+	echo $player
 }
 
 while [[ $players1 -lt $WIN_POSITION ]] && [[ $player2 -lt $WIN_POSITION ]]
