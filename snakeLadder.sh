@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 #Initializing start and win positions
 START_POSITION=0
@@ -67,7 +67,7 @@ function playGame(){
 }
 
 
-while [[ $players1 -lt $WIN_POSITION ]] && [[ $player2 -lt $WIN_POSITION ]]
+while [[ $player1 -lt $WIN_POSITION ]] && [[ $player2 -lt $WIN_POSITION ]]
 do
    IFS="$(printf '\3')"
    set -- $(playGame $player1 $counter1)
@@ -82,11 +82,11 @@ do
    echo -e  "Position of player2 is $player2 \n"
 done
 
-if [ $player1 -eq $WIN_POSITION ]
+if [ $player2 -eq $WIN_POSITION ]
 then
-   echo "Player1 is the winner!!"
-else
    echo "Player2 is the winner!!"
+else
+   echo "Player1 is the winner!!"
 fi
 
 echo count1 : $counter1
