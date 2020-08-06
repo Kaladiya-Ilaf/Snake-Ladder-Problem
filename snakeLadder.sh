@@ -18,24 +18,24 @@ echo -e  "Starting position of player2 :  $player2 \n"
 #function to be executed when snake bite option occurs
 function snakeBite(){
    currentPosition=$1
-   moveToPosition=$2
-   if [ $(( $currentPosition - $moveToPosition )) -lt $START_POSITION ]
+   diceRoll=$2
+   if [ $(( $currentPosition - $diceRoll )) -lt $START_POSITION ]
    then
       echo $START_POSITION
    else
-      echo $(( $currentPosition - $moveToPosition ))
+      echo $(( $currentPosition - $diceRoll ))
    fi
 }
 
 #function to be executed when climb ladder option occurs
 function climbLadder(){
    currentPosition=$1
-   moveToPosition=$2
-   if [ $(( $currentPosition + $moveToPosition )) -gt $WIN_POSITION ]
+   diceRoll=$2
+   if [ $(( $currentPosition + $diceRoll )) -gt $WIN_POSITION ]
    then
       echo $currentPosition
    else
-      echo $(( $currentPosition + $moveToPosition ))
+      echo $(( $currentPosition + $diceRoll ))
    fi
 }
 
@@ -46,22 +46,21 @@ function playGame(){
    diceValue=$(( RANDOM % 6 + 1 ))
    echo >&2 "Result of dice rolled : " $diceValue
    ((counter++))
-
+   
    #Randomly generating  option to decide further action to play
    playOption=$(( RANDOM % 3 ))
    case $playOption in
       0) echo >&2 "Option : No Play.";;
-
+      
       1) echo >&2 "Option : Sanke Bite"
          player=$(snakeBite $player $diceValue);;
-
+      
       2) echo >&2 "Option : Climb Ladder"
          player=$(climbLadder $player $diceValue)
          IFS="$(printf '\3')"
          set -- $(playGame $player $counter)
          player=$1
          counter=$2;;
-
    esac
    printf '%d\3' "$player" "$counter"
 }
@@ -91,4 +90,3 @@ fi
 
 echo count1 : $counter1
 echo count2 : $counter2
-
